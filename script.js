@@ -44,7 +44,7 @@ function addStudent() {
             alert("Invalid Contact , Contact should be start with 7 or 0 or +94 and should be 10 digits(077 xxxx xxx) or 11 digits(+94 77 xxxx xxx)");
             throw "Invalid Contact";
         } else {
-            var customer = {
+            var student = {
                 name: name,
                 gender: gender.value,
                 dob: dob,
@@ -52,14 +52,14 @@ function addStudent() {
                 contact: contact,
                 img: stImg
             }
-            students.push(customer);
+            students.push(student);
             document.getElementById("studentName").value = "";
             document.getElementById("studentDOB").value = "";
             document.getElementById("studentAddress").value = "";
             document.getElementById("studentContact").value = "";
 
             console.log(students);
-            viewAllCustomers(students);
+            viewAllStudents(students);
         }
     } catch (error) {
         console.log(error);
@@ -67,10 +67,10 @@ function addStudent() {
 }
 
 /*View all students function*/
-function viewAllCustomers(selectedArr) {
+function viewAllStudents(selectedArr) {
     document.getElementById("studentDetailsDiv").innerHTML = "";
     for (let i = 0; i < selectedArr.length; i++) {
-        let newCustomer =
+        let newStudent =
             `<div class="card col-8 col-sm-6 col-lg-4" style="width: 23rem;margin-bottom: 20px">
                 <div class="card-img-top" style="background-color: #FFC107; height: 200px;position: relative">
                     <img src=${selectedArr[i].img} class="card-img-top" alt="student-image" style="width: 120px; height: 120px;position: absolute;top: 0;left: 0;right: 0;bottom: 0;margin: auto">
@@ -88,23 +88,23 @@ function viewAllCustomers(selectedArr) {
                     </div>
                 </div>
             </div>`;
-        document.getElementById("studentDetailsDiv").innerHTML += newCustomer;
+        document.getElementById("studentDetailsDiv").innerHTML += newStudent;
     }
 }
 
 /*Delete customer function*/
 function deleteStudent(id) {
     students.splice(id, 1);
-    viewAllCustomers(students);
+    viewAllStudents(students);
 }
 
 /*Search Students Function*/
 function searchStudent(studentDetail) {
     if (!studentDetail) {
-        viewAllCustomers(students);
+        viewAllStudents(students);
     } else {
         let filteredStudents = students.filter(student => student.name === studentDetail || student.dob === studentDetail || student.address === studentDetail || student.contact === studentDetail || student.gender === studentDetail);
-        viewAllCustomers(filteredStudents);
+        viewAllStudents(filteredStudents);
     }
 }
 
